@@ -15,7 +15,11 @@ Enemies always choose the shortest path.
 516 017 118
 
 310
+
 311 412
+
 313 414 215
+
 1|14 15 17
+
 0 1 8 3 4 11
