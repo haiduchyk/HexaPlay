@@ -24,7 +24,7 @@ public sealed class ScriptParse
     static public GameManager game;
     static public Tree CreateTree() 
     {
-        var tree =  new Tree();
+        var tree = new Tree();
         var root = tree.insert();
         checkStuff(root, "0");
         NodesCreater(root); 
@@ -33,39 +33,26 @@ public sealed class ScriptParse
     static public void saveTree(Node node)
     {
         script = new List<string>() {"", "|", ""};
-
         visualisation(node);
-        
-
     }
     static public void visualisation(Node node) 
     {
-
         node.visited = true;
         Node[] n = node.nodes;
-
         for (int i = 0; i < n.Length; i++)
         {
-            
             if (n[i] != null && !n[i].visited) 
             {
                 existOfStuff(n[i], nodeCounter);
                 writeNode(nodeCounter);
                 visualisation(n[i]); 
-                
             }
-            
         }
-        // Debug.Log(temp);
     }
     static void existOfStuff(Node node, int number) 
     {
         if (game.enemyNodes.Contains(node)) writeEnemy(number);
         if (game.starNodes.Contains(node)) writeStar(number);
-    }
-    static void writeNode(int number)
-    {
-     
     }
     static void writeEnemy(int number) 
     {
@@ -84,21 +71,16 @@ public sealed class ScriptParse
     }
     static public void NodesCreater(Node node, int line = 0) 
     {
-        
         string[] elem = script[line].Split(' ');
         for (int i = 0; i < elem.Length; i++) {
-
             int index = getIndex(elem[i]);
             var newNode = addNode(index, node);
-
             string key = getKey(elem[i]);
             int nextLine = getLine(key);
             checkStuff(newNode, key + "");
             if (nextLine != -1) NodesCreater(newNode, nextLine);
-
         }
     }
-
     static public void makeListOfStuff() 
     {
          int secondLast  = getSecondLast(script);
@@ -123,15 +105,12 @@ public sealed class ScriptParse
         node.addNode(index, newNode);
         return newNode;
     }
-
     static public void checkStuff(Node node, string line)
     {
-    
         bool starFlag = stars.Contains(line);
         bool enemyFlag = enemies.Contains(line);
         if (starFlag) map.GenerateStar(node);
         if (enemyFlag) map.GenerateEnemy(node);
-
     }
     static public Tree CreateLevel(int level) 
     {
@@ -149,7 +128,6 @@ public sealed class ScriptParse
         while ((line = sr.ReadLine()) != null)
         script.Add(line);
         sr.Close();
-        
     }
     static int numb(string s) => Convert.ToInt32(s);
 }
