@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Command
+public interface ICommand
 {
     void Execute();
     void Undo();
 }
 
-public class Switch: Command
+public class Switch : ICommand
 {
     Access receiver;
     public Switch(Access r) => receiver = r;
